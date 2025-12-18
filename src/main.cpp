@@ -1,27 +1,35 @@
 #include <iostream>
 
+#include "Monster.h"
 #include "Player.h"
 #include "Potion.h"
 #include "Sword.h"
 
 int main() {
-    /*
-    std::vector<std::unique_ptr<GameItem>> inventory = {};
-    inventory.push_back(std::make_unique<Sword>("Meč Racka Kobyly", RARE, 1000, 20, 10, 90));
-    inventory.push_back(std::make_unique<Potion>("Heřmánkový odvar (silný)", COMMON, 30, 1, 1, 45));
+    Player pepik("Pepik", 100);
 
-    for (const auto& item : inventory) {
-        item->use();
-    }
-    */
+    // 1. Pepik najde meč
+    pepik.pickUp(std::make_unique<Sword>("Excalibur", LEGENDARY, 1000, 10, 1, 50));
 
-    Player Pepa ("Pepik", 100);
+    // 2. Zabije skřeta a vezme mu lektvar
+    Monster skret("Skřet", 20);
+    skret.transferLootTo(pepik);
 
-    Pepa.attack();
+    // 3. Koukneme do batohu
+    pepik.showInventory();
 
-    Pepa.pickUp(std::make_unique<Sword>("Excalibur", LEGENDARY, 2999.0, 30, 1, 120));
+    // 4. Teď drží Excalibur (protože ho sebral jako první a pickUp to nastavil).
+    // Zkusíme útok:
+    pepik.attack(); // Sekne mečem
 
-    Pepa.attack();
+    // 5. Pepik si chce vzít lektvar (bude na indexu 1, protože meč je na 0)
+    pepik.equipItem(1);
+
+    // 6. Znovu koukneme do batohu (měla by se přesunout značka [DRŽÍŠ V RUCE])
+    pepik.showInventory();
+
+    // 7. Použijeme předmět v ruce
+    pepik.attack(); // Měl by se vypít lektvar
 
     return 0;
 }
