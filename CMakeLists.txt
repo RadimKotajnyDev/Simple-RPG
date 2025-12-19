@@ -17,4 +17,10 @@ add_executable(untitled
         include/Player.h
         src/Monster.cpp
         include/Monster.h
+        src/ItemFactory.cpp
+        include/ItemFactory.h
+        src/Wolf.cpp
+        include/Wolf.h
+        src/Skeleton.cpp
+        include/Skeleton.h
 )

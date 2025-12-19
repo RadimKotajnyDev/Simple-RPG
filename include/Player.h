@@ -16,7 +16,7 @@ protected:
 public:
     explicit Player(std::string name, const int hp) : Entity(std::move(name), hp), xp(0), level(1) {}
 
-    void attack() override {
+    void InvokeAction() override {
         if (activeItem != nullptr) {
             std::cout << "Hráč (lvl " << level << "): " << name << " útočí!" << std::endl;
             activeItem->use();

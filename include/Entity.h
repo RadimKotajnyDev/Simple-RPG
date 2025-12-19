@@ -11,16 +11,30 @@
 #include <vector>
 #include <memory>
 
+
 class Entity {
 protected:
     std::string name;
     int health = 0;
+    int maxHealth = 100;
     std::vector<std::unique_ptr<GameItem>> inventory = {};
     GameItem* activeItem = nullptr;
 
 public:
-    std::string get_name() const {
+    std::string getName() const {
         return name;
+    }
+
+    void setHealth(const int hp) {
+        this->health = hp;
+    }
+
+    void dealDamage(const int damage) {
+        this->health = std::clamp(health - damage, 0, maxHealth);
+    }
+
+    void heal(const int amount) {
+        this->health = std::clamp(health + amount, 0, maxHealth);
     }
 
     explicit Entity(std::string name, int hp) : name(std::move(name)), health(hp) {}
@@ -41,7 +55,7 @@ public:
             return;
         }
 
-        std::cout << receiver.get_name() << " prohledává mrtvolu " << name << "..." << std::endl;
+        std::cout << receiver.getName() << " prohledává mrtvolu " << name << "..." << std::endl;
 
         for (auto& item : inventory) {
             if (item != nullptr) {
@@ -82,7 +96,9 @@ public:
         }
     }
 
-    virtual void attack() = 0;
+
+
+    virtual void InvokeAction() = 0;
     virtual ~Entity() = default;
 };
 
