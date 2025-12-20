@@ -1,10 +1,13 @@
-//
-// Created by Radim Kotajny on 14.12.2025.
-//
-
 #include "Sword.h"
 #include <iostream>
+#include <utility>
+
+Sword::Sword(std::string name, Rarity rarity, float price, float weight, int lvl, float dmg)
+    : GameItem(std::move(name), rarity, price, weight, lvl),
+      damage(dmg)
+{}
 
 void Sword::use() {
-    std::cout << "Seknul jsi mečem!" << std::endl;
+    std::cout << "Švih! Máchnul jsi zbraní " << get_name()
+              << " a způsobil " << damage << " poškození." << std::endl;
 }

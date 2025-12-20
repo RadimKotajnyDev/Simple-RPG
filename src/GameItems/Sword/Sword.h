@@ -4,22 +4,20 @@
 
 #ifndef UNTITLED_SWORD_H
 #define UNTITLED_SWORD_H
-#include <utility>
 
 #include "../GameItem.h"
+#include <string>
 
 class Sword : public GameItem {
 private:
     float damage;
 
 public:
-    Sword(std::string name, Rarity rarity, float price, float weight, int lvl, float dmg)
-        : GameItem(std::move(name), rarity, price, weight, lvl), damage(dmg) {
-
-    }
+    Sword(std::string name, Rarity rarity, float price, float weight, int lvl, float dmg);
 
     void use() override;
-};
 
+    [[nodiscard]] float getDamage() const { return damage; }
+};
 
 #endif //UNTITLED_SWORD_H
