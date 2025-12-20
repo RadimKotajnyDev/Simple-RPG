@@ -10,7 +10,8 @@
 #include <utility>
 #include <vector>
 #include <memory>
-
+#include <algorithm>
+#include "TermColors.h"
 
 class Entity {
 protected:
@@ -96,9 +97,20 @@ public:
         }
     }
 
+    void showHUD () {
+        const std::string bar = std::format("{} má {:<2}/{:<2} hp", name, health, maxHealth);
+
+        if (health < std::clamp(maxHealth / 2, 0, maxHealth)) {
+            std::cout << Color::RED << std::endl;
+        } else std::cout << Color::GRN << std::endl;
+
+        std::cout << "\n----------------------" << std::endl;
+        std::cout << bar << std::endl;
+        std::cout << "----------------------" << std::endl;
+    }
 
 
-    virtual void InvokeAction() = 0;
+    virtual void invokeAction() = 0;
     virtual ~Entity() = default;
 };
 

@@ -11,7 +11,7 @@ class Wolf : public Monster {
 public:
     Wolf() : Monster("Šedý vlk", 30) {}
 
-    void InvokeAction() override {
+    void invokeAction() override {
         std::cout << name << " tě kousnul do nohy!" << std::endl;
     }
 };

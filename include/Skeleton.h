@@ -9,9 +9,9 @@
 
 class Skeleton : public Monster {
 public:
-    Skeleton() : Monster ("Vale", 10) {}
+    Skeleton() : Monster ("Kostík z jogurtu", 10) {}
 
-    void InvokeAction() override {
+    void invokeAction() override {
         std::cout << "Chrastí kostmi" << std::endl;
     }
 };

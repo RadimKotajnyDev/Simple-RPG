@@ -14,7 +14,7 @@ public:
         inventory.push_back(std::make_unique<Potion>("Potion of weakness", COMMON, 10, 0.5, 1, 10));
     }
 
-    void InvokeAction() override {
+    void invokeAction() override {
         std::cout << "Monstrum " << name << " agresivně útočí!" << std::endl;
     }
 };

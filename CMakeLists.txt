@@ -23,4 +23,5 @@ add_executable(untitled
         include/Wolf.h
         src/Skeleton.cpp
         include/Skeleton.h
+        include/TermColors.h
 )

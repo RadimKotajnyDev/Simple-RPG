@@ -20,7 +20,7 @@ int main() {
 
     // 4. Teď drží Excalibur (protože ho sebral jako první a pickUp to nastavil).
     // Zkusíme útok:
-    pepik.InvokeAction(); // Sekne mečem
+    pepik.invokeAction(); // Sekne mečem
 
     // 5. Pepik si chce vzít lektvar (bude na indexu 1, protože meč je na 0)
     pepik.equipItem(1);
@@ -29,7 +29,10 @@ int main() {
     pepik.showInventory();
 
     // 7. Použijeme předmět v ruce
-    pepik.InvokeAction(); // Měl by se vypít lektvar
+    pepik.invokeAction(); // Měl by se vypít lektvar
+
+    pepik.dealDamage(20);
+    pepik.showHUD();
 
     return 0;
 }
