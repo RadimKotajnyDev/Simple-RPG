@@ -4,8 +4,8 @@
 
 #ifndef UNTITLED_HERNIPREDMET_H
 #define UNTITLED_HERNIPREDMET_H
+
 #include <string>
-#include <utility>
 
 enum Rarity {
     COMMON,
@@ -24,44 +24,17 @@ protected:
     int requiredLevel;
 
 public:
+    GameItem(std::string name, Rarity rarity, float price, float weight, int lvl);
+
+    virtual ~GameItem() = default;
 
     virtual void use() = 0;
 
-    std::string get_name() const {
-        return name;
-    }
-
-    Rarity get_rarity() const {
-        return rarity_;
-    }
-
-    float get_price() const {
-        return price;
-    }
-
-    float get_weight() const {
-        return weight;
-    }
-
-    int get_required_level() const {
-        return requiredLevel;
-    }
-
-    GameItem(
-        std::string name,
-        const Rarity rarity,
-        const float price,
-        const float weight,
-        const int lvl)
-        : name(std::move(name)),
-          rarity_(rarity),
-          price(price),
-          weight(weight),
-          requiredLevel(lvl) {
-    }
-
-    virtual ~GameItem() = default;
+    [[nodiscard]] std::string get_name() const;
+    [[nodiscard]] Rarity get_rarity() const;
+    [[nodiscard]] float get_price() const;
+    [[nodiscard]] float get_weight() const;
+    [[nodiscard]] int get_required_level() const;
 };
-
 
 #endif //UNTITLED_HERNIPREDMET_H
