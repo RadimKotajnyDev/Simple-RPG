@@ -17,28 +17,17 @@ public:
 
     virtual std::unique_ptr<Monster> spawnMonster() const = 0;
 
-    std::unique_ptr<Monster> spawnAndAnnounce() const {
-        std::unique_ptr<Monster> m = spawnMonster();
-
-        std::cout << "\n Z temnoty se vynořil: " << m->getName() << " <<<" << std::endl;
-        m->roar();
-
-        return m;
-    }
+    std::unique_ptr<Monster> spawnAndAnnounce() const;
 
 };
 
 class ForestSpawner: public Spawner {
 public:
-    std::unique_ptr<Monster> spawnMonster() const override {
-        return std::make_unique<Wolf>();
-    }
+    std::unique_ptr<Monster> spawnMonster() const override;
 };
 
 class DungeonSpawner : public Spawner {
-    std::unique_ptr<Monster> spawnMonster() const override {
-        return std::make_unique<Skeleton>();
-    }
+    std::unique_ptr<Monster> spawnMonster() const override;
 };
 
 

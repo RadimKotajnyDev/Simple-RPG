@@ -9,16 +9,13 @@
 
 class Wolf : public Monster {
 public:
-    Wolf() : Monster("Šedý vlk", 30) {
-    }
+    Wolf();
 
-    void roar() const override {
-        std::cout << "*Vyjí na měsíc!*" << std::endl;
-    }
+    void roar();
 
-    void invokeAction(Entity *target = nullptr) override {
-        std::cout << name << " tě kousnul do nohy!" << std::endl;
-    }
+    void roar() const override;
+
+    void invokeAction(Entity *target = nullptr) override;
 };
 
 

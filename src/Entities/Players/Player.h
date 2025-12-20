@@ -14,16 +14,9 @@ protected:
     int level;
 
 public:
-    explicit Player(std::string name, const int hp) : Entity(std::move(name), hp), xp(0), level(1) {}
+    explicit Player(std::string name, const int hp);
 
-    void invokeAction(Entity* target = nullptr) override {
-        if (activeItem != nullptr) {
-            std::cout << "Hráč (lvl " << level << "): " << name << " útočí!" << std::endl;
-            activeItem->use();
-        } else {
-            std::cout << "Hráč " << name << " mlátí pěstmi! Nemá nic v ruce." << std::endl;
-        }
-    }
+    void invokeAction(Entity* target = nullptr) override;
 };
 
 

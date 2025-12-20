@@ -10,15 +10,11 @@
 
 class Monster : public Entity {
 public:
-    Monster(std::string name, int hp) : Entity(std::move(name), hp) {
-        inventory.push_back(std::make_unique<Potion>("Potion of weakness", COMMON, 10, 0.5, 1, 10));
-    }
+    Monster(std::string name, int hp);
 
     virtual void roar() const = 0;
 
-    void invokeAction(Entity* target = nullptr) override {
-        std::cout << "Monstrum " << name << " agresivně útočí!" << std::endl;
-    }
+    void invokeAction(Entity* target = nullptr) override;
 };
 
 

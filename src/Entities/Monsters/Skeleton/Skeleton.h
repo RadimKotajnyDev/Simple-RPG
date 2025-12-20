@@ -6,18 +6,15 @@
 #define UNTITLED_SKELETON_H
 #include "../Monster.h"
 
-
 class Skeleton : public Monster {
 public:
-    Skeleton() : Monster ("Kostík z jogurtu", 10) {}
+    Skeleton();
 
-    void roar() const override {
-        std::cout << "*Chrastí kostmi!*" << std::endl;
-    }
+    void roar();
 
-    void invokeAction(Entity* target = nullptr) override {
-        std::cout << "Chrastí kostmi" << std::endl;
-    }
+    void roar() const override;
+
+    void invokeAction(Entity* target = nullptr) override;
 };
 
 
