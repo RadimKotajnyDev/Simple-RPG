@@ -6,7 +6,7 @@
 #define UNTITLED_SWORD_H
 #include <utility>
 
-#include "GameItem.h"
+#include "../GameItem.h"
 
 class Sword : public GameItem {
 private:

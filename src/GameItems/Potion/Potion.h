@@ -6,7 +6,7 @@
 #define UNTITLED_POTION_H
 #include <utility>
 
-#include "GameItem.h"
+#include "../GameItem.h"
 
 class Potion : public GameItem {
 private:

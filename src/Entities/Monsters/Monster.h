@@ -4,8 +4,8 @@
 
 #ifndef UNTITLED_MONSTER_H
 #define UNTITLED_MONSTER_H
-#include "Entity.h"
-#include "Potion.h"
+#include "../Entity.h"
+#include "../../GameItems/Potion/Potion.h"
 
 
 class Monster : public Entity {
@@ -14,7 +14,9 @@ public:
         inventory.push_back(std::make_unique<Potion>("Potion of weakness", COMMON, 10, 0.5, 1, 10));
     }
 
-    void invokeAction() override {
+    virtual void roar() const = 0;
+
+    void invokeAction(Entity* target = nullptr) override {
         std::cout << "Monstrum " << name << " agresivně útočí!" << std::endl;
     }
 };

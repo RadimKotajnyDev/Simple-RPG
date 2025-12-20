@@ -4,14 +4,18 @@
 
 #ifndef UNTITLED_SKELETON_H
 #define UNTITLED_SKELETON_H
-#include "Monster.h"
+#include "../Monster.h"
 
 
 class Skeleton : public Monster {
 public:
     Skeleton() : Monster ("Kostík z jogurtu", 10) {}
 
-    void invokeAction() override {
+    void roar() const override {
+        std::cout << "*Chrastí kostmi!*" << std::endl;
+    }
+
+    void invokeAction(Entity* target = nullptr) override {
         std::cout << "Chrastí kostmi" << std::endl;
     }
 };

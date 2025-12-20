@@ -6,12 +6,12 @@
 #define UNTITLED_ENTITY_H
 #include <iostream>
 
-#include "GameItem.h"
+#include "../GameItems/GameItem.h"
 #include <utility>
 #include <vector>
 #include <memory>
 #include <algorithm>
-#include "TermColors.h"
+#include "../Utils/TermColors.h"
 
 class Entity {
 protected:
@@ -20,14 +20,32 @@ protected:
     int maxHealth = 100;
     std::vector<std::unique_ptr<GameItem>> inventory = {};
     GameItem* activeItem = nullptr;
-
 public:
-    std::string getName() const {
-        return name;
+    explicit Entity(std::string name, int hp) : name(std::move(name)), health(hp) {}
+
+
+    void setName(const std::string &name) {
+        this->name = name;
     }
 
-    void setHealth(const int hp) {
-        this->health = hp;
+    void setHealth(int health) {
+        this->health = health;
+    }
+
+    int getHealth() const {
+        return health;
+    }
+
+    [[nodiscard]] int getMaxHealth() const {
+        return maxHealth;
+    }
+
+    void setMaxHealth(int max_health) {
+        maxHealth = max_health;
+    }
+
+    std::string getName() const {
+        return name;
     }
 
     void dealDamage(const int damage) {
@@ -38,7 +56,6 @@ public:
         this->health = std::clamp(health + amount, 0, maxHealth);
     }
 
-    explicit Entity(std::string name, int hp) : name(std::move(name)), health(hp) {}
 
     void pickUp(std::unique_ptr<GameItem> item) {
         if (activeItem == nullptr) {
@@ -110,7 +127,7 @@ public:
     }
 
 
-    virtual void invokeAction() = 0;
+    virtual void invokeAction(Entity* target = nullptr) = 0;
     virtual ~Entity() = default;
 };
 

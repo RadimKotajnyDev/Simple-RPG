@@ -1,27 +1,13 @@
-cmake_minimum_required(VERSION 4.0)
-project(untitled)
+cmake_minimum_required(VERSION 3.20)
+project(SimpleRPG)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(include)
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.h")
 
-add_executable(untitled
-        src/main.cpp
-        src/GameItem.cpp
-        src/Sword.cpp
-        src/Potion.cpp
-        include/Potion.h
-        src/Entity.cpp
-        include/Entity.h
-        src/Player.cpp
-        include/Player.h
-        src/Monster.cpp
-        include/Monster.h
-        src/ItemFactory.cpp
-        include/ItemFactory.h
-        src/Wolf.cpp
-        include/Wolf.h
-        src/Skeleton.cpp
-        include/Skeleton.h
-        include/TermColors.h
-)
+add_executable(SimpleRPG ${SOURCES}
+        main.cpp
+        src/Entities/Monsters/Spawner.cpp
+        src/Entities/Monsters/Spawner.h)
+
+target_include_directories(SimpleRPG PRIVATE src)
