@@ -11,22 +11,13 @@
 class Potion : public GameItem {
 private:
     int heal;
+
 public:
-    Potion(
-        std::string name,
-        Rarity rarity,
-        float price,
-        float weight,
-        int lvl,
-        int h
-    ) : GameItem(
-        std::move(name),
-                 rarity, price, weight, lvl),
-        heal(h) {
-    }
+    Potion(std::string name, Rarity rarity, float price, float weight, int lvl, int h);
 
     void use() override;
-};
 
+    [[nodiscard]] int getHealAmount() const { return heal; }
+};
 
 #endif //UNTITLED_POTION_H
