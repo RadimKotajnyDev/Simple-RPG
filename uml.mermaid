@@ -1,0 +1,101 @@
+classDiagram
+    %% --- Abstraktní třídy a Rozhraní ---
+    class Entity {
+        <<Abstract>>
+        #string name
+        #int health
+        #int maxHealth
+        #vector~unique_ptr~GameItem~~ inventory
+        #GameItem* activeItem
+        +getName() string
+        +dealDamage(int damage)
+        +heal(int amount)
+        +pickUp(unique_ptr~GameItem~)
+        +equipItem(int index)
+        +invokeAction(Entity* target)*
+    }
+
+    class GameItem {
+        <<Abstract>>
+        #string name
+        #Rarity rarity
+        #float price
+        #float weight
+        +getName() string
+        +use()*
+    }
+
+    class Spawner {
+        <<Abstract>>
+        +spawnMonster()* unique_ptr~Monster~
+        +spawnAndAnnounce() unique_ptr~Monster~
+    }
+
+    %% --- Konkrétní Entity ---
+    class Player {
+        +Player(string name, int hp)
+        +invokeAction(Entity* target)
+    }
+
+    class Monster {
+        <<Abstract>>
+        +Monster(string name, int hp)
+        +roar() const*
+    }
+
+    class Wolf {
+        +Wolf()
+        +roar() const
+        +invokeAction(Entity* target)
+    }
+
+    class Skeleton {
+        +Skeleton()
+        +roar() const
+        +invokeAction(Entity* target)
+    }
+
+    %% --- Konkrétní Předměty ---
+    class Sword {
+        -float damage
+        +use()
+        +getDamage() float
+    }
+
+    class Potion {
+        -int healAmount
+        +use()
+        +getHealAmount() int
+    }
+
+    %% --- Konkrétní Továrny (Factory Method) ---
+    class ForestSpawner {
+        +spawnMonster() unique_ptr~Monster~
+    }
+
+    class DungeonSpawner {
+        +spawnMonster() unique_ptr~Monster~
+    }
+
+    %% --- VZTAHY (RELATIONSHIPS) ---
+
+    %% Dědičnost (Inheritance) - Plná čára s trojúhelníkem
+    Entity <|-- Player
+    Entity <|-- Monster
+    Monster <|-- Wolf
+    Monster <|-- Skeleton
+
+    GameItem <|-- Sword
+    GameItem <|-- Potion
+
+    Spawner <|-- ForestSpawner
+    Spawner <|-- DungeonSpawner
+
+    %% Agregace/Kompozice (Inventory) - Kosočtverec
+    %% Entity "vlastní" GameItems
+    Entity o-- GameItem : contains (inventory)
+
+    %% Závislost (Dependency) - Přerušovaná šipka
+    %% Továrny "vytváří" konkrétní produkty
+    ForestSpawner ..> Wolf : creates
+    DungeonSpawner ..> Skeleton : creates
